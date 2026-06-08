@@ -1,0 +1,2 @@
+Proyecto Final - Pruebas Unitarias
+Este proyecto corresponde al trabajo práctico sobre las pruebas unitarias como parte final del curso Testing y Validación de Software. Cada estudiante o grupo debe seleccionar un dominio propio (por ejemplo: reservas, inventarios, salud, educación, transporte, finanzas, etc.) y aplicar las estrategias vistas en el Taller de Pruebas Unitarias para diseñar, implementar y validar su propio módulo de negocio mediante pruebas automatizadas.
