@@ -297,6 +297,46 @@ Las evidencias del taller incluyen:
 * Captura de la ejecución con `mvn clean test`.
 * Captura del resultado `BUILD SUCCESS`.
 
+
+## Evidencias de ejecución
+
+### Creación del proyecto Maven
+
+![Creación del proyecto Maven](evidencias/Imagen01.png)
+
+### Actualización del archivo pom.xml con JUnit
+
+![Configuración de JUnit en pom.xml](evidencias/Imagen02.png)
+
+### Estructura del proyecto
+
+![Estructura del proyecto](evidencias/Imagen03.png)
+
+### Ciclo TDD - Red
+
+En esta evidencia se observa una prueba fallida como parte del ciclo Red de TDD.
+
+![TDD Red](evidencias/Imagen04.png)
+
+![TDD Red 2](evidencias/Imagen05.png)
+
+![TDD Red 3](evidencias/Imagen06.png)
+
+
+### Ciclo TDD - Green
+
+En esta evidencia se observa la ejecución exitosa de las pruebas luego de implementar la lógica mínima.
+
+![TDD Green](evidencias/Imagen07.png)
+
+![TDD Green 2](evidencias/Imagen08.png)
+
+![TDD Green Refactor](evidencias/Imagen09.png)
+
+### Ejecución final de pruebas
+
+![Build Success](evidencias/Imagen10.png)
+
 ---
 
 ## 12. Resultados obtenidos
