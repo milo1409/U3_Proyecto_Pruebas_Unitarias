@@ -339,7 +339,7 @@ En esta evidencia se observa la ejecución exitosa de las pruebas luego de imple
 
 ---
 
-## 12. Resultados obtenidos
+## 13. Resultados obtenidos
 
 Durante la ejecución de las pruebas se validaron los principales escenarios del método `registerVoter`.
 
@@ -354,7 +354,205 @@ Nota: el número total de pruebas puede variar si se conserva la prueba generada
 
 ---
 
-## 13. Conclusiones
+## 14. Cobertura de código con JaCoCo
+
+Para medir la cobertura de las pruebas unitarias se integró el plugin JaCoCo en el archivo `pom.xml`.
+
+Comando para ejecutar las pruebas:
+
+```bash
+mvn clean test
+```
+
+### Resultado de ejecucion:
+![Instalacion de JaCoCo](evidencias/Imagen11.png)
+
+![Prueba de cobertura](evidencias/Imagen12.png)
+
+![Prueba de cobertura 2](evidencias/Imagen13.png)
+
+
+## Robustez de las pruebas con BDD
+
+La escritura de pruebas con BDD, Behavior-Driven Development, permite expresar los casos de prueba en un lenguaje cercano al negocio. Esto facilita que desarrolladores, analistas y usuarios comprendan el comportamiento esperado del sistema.
+
+A diferencia de las pruebas unitarias tradicionales, que se enfocan directamente en métodos o clases, BDD describe el comportamiento esperado mediante una estructura narrativa:
+
+```text
+Given - Dado
+When  - Cuando
+Then  - Entonces
+```
+
+En este proyecto, BDD permite conectar las reglas de negocio del proceso de registro de votantes con las pruebas automatizadas implementadas en JUnit. De esta forma, cada prueba unitaria tiene una trazabilidad directa frente a un comportamiento esperado del sistema.
+
+---
+
+## Escenarios BDD
+
+### Escenario: Registrar persona válida
+
+```gherkin
+Given que existe una persona viva, mayor de edad y con un identificador único
+When intento registrarla como votante
+Then el resultado debe ser VALID
+```
+
+### Escenario: Rechazar persona muerta
+
+```gherkin
+Given que existe una persona que no está viva
+When intento registrarla como votante
+Then el resultado debe ser DEAD
+```
+
+### Escenario: Rechazar persona menor de edad
+
+```gherkin
+Given que existe una persona viva de 17 años
+When intento registrarla como votante
+Then el resultado debe ser UNDERAGE
+```
+
+### Escenario: Aceptar persona con edad mínima válida
+
+```gherkin
+Given que existe una persona viva de 18 años y con identificador válido
+When intento registrarla como votante
+Then el resultado debe ser VALID
+```
+
+### Escenario: Aceptar persona con edad máxima válida
+
+```gherkin
+Given que existe una persona viva de 120 años y con identificador válido
+When intento registrarla como votante
+Then el resultado debe ser VALID
+```
+
+### Escenario: Rechazar edad negativa
+
+```gherkin
+Given que existe una persona viva con edad -1
+When intento registrarla como votante
+Then el resultado debe ser INVALID_AGE
+```
+
+### Escenario: Rechazar edad superior al máximo permitido
+
+```gherkin
+Given que existe una persona viva con edad 121
+When intento registrarla como votante
+Then el resultado debe ser INVALID_AGE
+```
+
+### Escenario: Rechazar persona duplicada
+
+```gherkin
+Given que una persona ya fue registrada con un identificador
+When intento registrar otra persona con el mismo identificador
+Then el resultado debe ser DUPLICATED
+```
+
+### Escenario: Rechazar persona nula
+
+```gherkin
+Given que la persona es null
+When intento registrarla como votante
+Then el resultado debe ser INVALID
+```
+
+### Escenario: Rechazar identificador inválido
+
+```gherkin
+Given que existe una persona viva, mayor de edad, pero con id igual a 0
+When intento registrarla como votante
+Then el resultado debe ser INVALID
+```
+
+---
+
+## Trazabilidad entre pruebas unitarias y escenarios BDD
+
+| Nombre del test JUnit                                     | Escenario BDD                                                                                                                                 |
+| --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `shouldReturnValidWhenPersonIsAliveAdultAndNotDuplicated` | Given que existe una persona viva, mayor de edad y con id único; When intento registrarla; Then el resultado debe ser VALID                   |
+| `shouldReturnDeadWhenPersonIsNotAlive`                    | Given que la persona no está viva; When intento registrarla; Then el resultado debe ser DEAD                                                  |
+| `shouldReturnUnderageWhenPersonIs17YearsOld`              | Given que la persona tiene 17 años, está viva y su id es válido; When intento registrarla; Then el resultado debe ser UNDERAGE                |
+| `shouldReturnValidWhenPersonIs18YearsOld`                 | Given que la persona tiene 18 años, está viva y su id es válido; When intento registrarla; Then el resultado debe ser VALID                   |
+| `shouldReturnValidWhenPersonIs120YearsOld`                | Given que la persona tiene 120 años, está viva y su id es válido; When intento registrarla; Then el resultado debe ser VALID                  |
+| `shouldReturnInvalidAgeWhenPersonHasNegativeAge`          | Given que la persona tiene edad -1, está viva y su id es válido; When intento registrarla; Then el resultado debe ser INVALID_AGE             |
+| `shouldReturnInvalidAgeWhenPersonIsOlderThan120`          | Given que la persona tiene 121 años, está viva y su id es válido; When intento registrarla; Then el resultado debe ser INVALID_AGE            |
+| `shouldReturnDuplicatedWhenPersonIdWasAlreadyRegistered`  | Given que una persona ya fue registrada con un id; When intento registrar otra persona con el mismo id; Then el resultado debe ser DUPLICATED |
+| `shouldReturnInvalidWhenPersonIsNull`                     | Given que la persona es null; When intento registrarla; Then el resultado debe ser INVALID                                                    |
+| `shouldReturnInvalidWhenPersonIdIsZero`                   | Given que la persona tiene id igual a 0, edad válida y está viva; When intento registrarla; Then el resultado debe ser INVALID                |
+
+---
+
+## Regla de enfoque de pruebas
+
+Todas las pruebas unitarias implementadas se enfocan en el dominio de la aplicación.
+Esto significa que las pruebas validan directamente las reglas de negocio del método `registerVoter(Person)` y no dependen de elementos externos como bases de datos, interfaces gráficas, servicios web o archivos externos.
+
+Este enfoque mejora la robustez de las pruebas porque permite que sean:
+
+* Rápidas.
+* Reproducibles.
+* Independientes.
+* Claras.
+* Trazables frente a las reglas de negocio.
+
+## Automatización e integración continua
+
+Se configuró un flujo de Integración Continua usando GitHub Actions.
+
+El archivo de configuración se encuentra en:
+
+```text
+.github/workflows/maven-ci.yml
+```
+
+# Gestión de defectos
+
+Este archivo documenta defectos reales o simulados encontrados durante el desarrollo del taller de pruebas unitarias.
+
+---
+
+## Defecto 01
+
+- **Caso:** persona muerta.
+- **Entrada:** persona con `alive = false`.
+- **Resultado esperado:** `DEAD`.
+- **Resultado obtenido inicialmente:** `VALID`.
+- **Causa probable:** la primera implementación del método `registerVoter` retornaba siempre `VALID`.
+- **Solución aplicada:** se agregó una condición para validar el estado de vida y retornar `DEAD`.
+- **Estado:** Cerrado.
+
+---
+
+## Defecto 02
+
+- **Caso:** edad negativa.
+- **Entrada:** persona viva con edad = -1.
+- **Resultado esperado:** `INVALID_AGE`.
+- **Resultado obtenido inicialmente:** `VALID`.
+- **Causa probable:** no existía validación para edades menores que cero.
+- **Solución aplicada:** se agregó una condición para retornar `INVALID_AGE` cuando la edad es menor que cero.
+- **Estado:** Cerrado.
+
+---
+
+## Defecto 03
+
+- **Caso:** persona duplicada.
+- **Entrada:** dos personas con el mismo identificador.
+- **Resultado esperado:** `DUPLICATED`.
+- **Resultado obtenido inicialmente:** `VALID`.
+- **Causa probable:** no existía control de identificadores ya registrados.
+- **Solución aplicada:** se agregó un `Set<Integer>` para almacenar los identificadores registrados.
+- **Estado:** Cerrado.
+
+## 15. Conclusiones
 
 La implementación de pruebas unitarias permitió validar las reglas principales del proceso de registro de votantes. El uso de TDD facilitó construir la lógica de forma incremental, comenzando por pruebas que fallaban, luego implementando la solución mínima y finalmente refactorizando el código.
 
