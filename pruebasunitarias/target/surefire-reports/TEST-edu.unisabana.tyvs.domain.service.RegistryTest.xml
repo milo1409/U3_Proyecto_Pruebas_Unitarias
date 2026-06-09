@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.unisabana.tyvs.domain.service.RegistryTest" time="0.099" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="edu.unisabana.tyvs.domain.service.RegistryTest" time="0.101" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.19.10-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\CPORRAS\AppData\Local\Temp\surefire9892521550682887591\surefirebooter-20260608015748998_3.jar C:\Users\CPORRAS\AppData\Local\Temp\surefire9892521550682887591 2026-06-08T01-57-48_910-jvmRun1 surefire-20260608015748998_1tmp surefire_0-20260608015748998_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\CPORRAS\AppData\Local\Temp\surefire4048715847548264777\surefirebooter-20260608194848596_3.jar C:\Users\CPORRAS\AppData\Local\Temp\surefire4048715847548264777 2026-06-08T19-48-48_458-jvmRun1 surefire-20260608194848596_1tmp surefire_0-20260608194848596_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\Personal\MAESTRIA ASOFTWARE\Testing\Actividad3\proyecto_maven\U3_Proyecto_Pruebas_Unitarias\pruebasunitarias\target\test-classes;D:\Personal\MAESTRIA ASOFTWARE\Testing\Actividad3\proyecto_maven\U3_Proyecto_Pruebas_Unitarias\pruebasunitarias\target\classes;C:\Users\CPORRAS\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\CPORRAS\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\CPORRAS\AppData\Local\Temp\surefire9892521550682887591\surefirebooter-20260608015748998_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\CPORRAS\AppData\Local\Temp\surefire4048715847548264777\surefirebooter-20260608194848596_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.19+10"/>
@@ -58,7 +58,7 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="shouldReturnValidWhenPersonIs18YearsOld" classname="edu.unisabana.tyvs.domain.service.RegistryTest" time="0.029"/>
+  <testcase name="shouldReturnValidWhenPersonIs18YearsOld" classname="edu.unisabana.tyvs.domain.service.RegistryTest" time="0.028"/>
   <testcase name="shouldReturnInvalidAgeWhenPersonIsOlderThan120" classname="edu.unisabana.tyvs.domain.service.RegistryTest" time="0.0"/>
   <testcase name="shouldReturnDuplicatedWhenPersonIdWasAlreadyRegistered" classname="edu.unisabana.tyvs.domain.service.RegistryTest" time="0.0"/>
   <testcase name="shouldReturnValidWhenPersonIsAliveAdultAndNotDuplicated" classname="edu.unisabana.tyvs.domain.service.RegistryTest" time="0.0"/>
